@@ -1,5 +1,6 @@
 # general
 .DS_Store
+Thumbs.db
 *.log
 
 # node-specific
@@ -11,3 +12,5 @@ dist
 
 scripts/deploy
 assets/scripts/bundle
+
+.prettierrc
