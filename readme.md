@@ -1,17 +1,19 @@
-# bahn.guru
+# mav.guru
 
-[Bahn-Preiskalender](https://bahn.guru) website: Find the cheapest "Sparpreise" (low-cost tickets) for the next month.
+This project aims to copy [bahn.guru](https://bahn.guru) and adapt it to the price API of the hungarian railway ([MAV](https://jegy.mav.hu/)).
 
-[![License](https://img.shields.io/github/license/juliuste/bahn.guru.svg?style=flat)](license)
-[![Contact me](https://img.shields.io/badge/contact-email-turquoise)](mailto:mail@juliustens.eu)
+![ISC-licensed](https://img.shields.io/github/license/martinlangbecker/mav-stations.svg)
+[![Contact me](https://img.shields.io/badge/contact-email-turquoise)](mailto:martin.langbecker@gmail.com)
+
+Screenshot of bahn.guru:
 
 [![bahn.guru](https://i.imgur.com/bJmvAJp.png)](https://bahn.guru)
 
 ## See also
 
+- [mav-prices](https://github.com/martinlangbecker/mav-prices#mav-prices) – Find journey prices using the MAV API.
 - [travel-price-map](https://github.com/juliuste/travel-price-map/) – Map of low-cost tickets ("Sparpreise") for several european cities
-- [db-prices](https://github.com/juliuste/db-prices/) – JavaScript client for the DB Sparpreise API
 
 ## Contributing
 
-If you found a bug or want to propose a feature, feel free to visit [the issues page](https://github.com/juliuste/bahn.guru/issues).
+If you found a bug or want to propose a feature, feel free to visit [the issues page](https://github.com/martinlangbecker/mav.guru/issues).
