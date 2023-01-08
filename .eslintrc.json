@@ -1,14 +1,16 @@
 {
-	"extends": "standard",
+	"extends": "eslint:recommended",
+	"env": {
+		"es2022": true,
+		"node": true
+	},
+	"parserOptions": {
+		"sourceType": "module"
+	},
+	"ignorePatterns": [
+		"node_modules"
+	],
 	"rules": {
-		"indent": [
-			"error",
-			"tab"
-		],
-		"no-tabs": "off",
-		"comma-dangle": [
-			"error",
-			"always-multiline"
-		]
+		"no-unused-vars": "off"
 	}
 }
