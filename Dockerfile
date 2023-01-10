@@ -1,5 +1,5 @@
 # install dependencies
-FROM node:fermium-alpine
+FROM node:current-alpine3.16
 RUN npm i -g pnpm
 
 WORKDIR /app-src
@@ -14,6 +14,5 @@ RUN pnpm run build
 USER node
 
 ENV PORT=3000
-ENV API="bahn"
 
 CMD ["pnpm", "run", "start"]

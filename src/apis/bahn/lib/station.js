@@ -1,19 +1,14 @@
-import createHafasClient from 'db-hafas'
-const { locations: stations } = createHafasClient('bahn.guru')
+import { readStations } from 'mav-stations';
 
-const station = (s) => {
-	// eslint-disable-next-line prefer-promise-reject-errors
-	if (!s) return Promise.reject(false)
-	return stations(s)
-		.then(
-			(data) => {
-				if (data.length > 0) return data[0]
-				return false
-			})
-		.catch(
-			// eslint-disable-next-line n/handle-callback-err
-			(error) => false,
-		)
-}
+const station = async (name) => {
+  // eslint-disable-next-line prefer-promise-reject-errors
+  if (!name) return Promise.reject(false);
 
-export default station
+  for await (const station of readStations()) {
+    if (station.name === name || station.aliasNames.indexOf(name) !== -1)
+      return new Promise(() => station);
+    return Promise.reject(false);
+  }
+};
+
+export default station;
