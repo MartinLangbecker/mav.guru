@@ -1,10 +1,7 @@
 import createServer from './lib/index.js';
-import * as bahn from './apis/bahn/index.js';
 
 const port = +process.env.PORT || 3000;
-const api = bahn;
-
-const server = createServer(api);
+const server = createServer();
 
 // start HTTP server
 server.listen(port, (error) => {
