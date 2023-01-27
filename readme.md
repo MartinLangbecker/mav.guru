@@ -1,6 +1,6 @@
 # mav.guru
 
-This project aims to copy [bahn.guru](https://bahn.guru) and adapt it to the price API of the hungarian railway ([MAV](https://jegy.mav.hu/)).
+This project aims to copy [bahn.guru](https://bahn.guru) and adapt it to the price API of [Magyar Államvasutak](https://jegy.mav.hu/) (MÁV, Hungarian State Railways).
 
 ![ISC-licensed](https://img.shields.io/github/license/martinlangbecker/mav-stations.svg)
 [![Contact me](https://img.shields.io/badge/contact-email-turquoise)](mailto:martin.langbecker@gmail.com)
