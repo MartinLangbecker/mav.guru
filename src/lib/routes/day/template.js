@@ -145,6 +145,9 @@ const journeyTable = (api, data) => {
         h('td', products(journey)),
         h('td.price', [
           h(
+            // TODO build POST request with constructed body
+            // tutorial: https://stackoverflow.com/questions/3915917/make-a-link-use-post-instead-of-get
+            // link: https://jegy-a.mav.hu/IK_API_PROD/api/OfferRequestApi/GetOfferRequest
             'a',
             { href: journey.link, title: api.settings.shopLinkTitle },
             price(journey)

@@ -1,14 +1,19 @@
-import client from 'db-prices';
+import { queryPrices } from 'mav-prices';
 import moment from 'moment-timezone';
 import settings from '../settings.js';
 import isNull from 'lodash/isNull.js';
 
 const journeys = (params, day) => {
   const dayTimestamp = +moment.tz(day, settings.timezone).startOf('day');
-  return client(params.origin.id, params.destination.id, moment(day).toDate(), {
-    class: params.class,
-    travellers: [{ typ: 'E', bc: params.bc }],
-  })
+  return queryPrices(
+    params.origin.id,
+    params.destination.id,
+    moment(day).toDate(),
+    {
+      class: params.class,
+      travellers: [{ type: params.age, discounts: [params.bc] }],
+    }
+  )
     .then((results) =>
       results.filter((j) => {
         const departure = new Date(j.legs[0].departure);

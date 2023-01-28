@@ -5,9 +5,11 @@ const station = async (name) => {
   if (!name) return Promise.reject(false);
 
   for await (const station of readStations()) {
-    if (station.name === name || station.aliasNames.indexOf(name) !== -1)
-      return new Promise(() => station);
-    return Promise.reject(false);
+    if (station.name === name || station.aliasNames.indexOf(name) !== -1) {
+      return Promise.resolve(station);
+    } else {
+      return Promise.reject(false);
+    }
   }
 };
 
