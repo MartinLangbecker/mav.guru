@@ -7,7 +7,6 @@ export { default as station } from './lib/station.js';
 export { default as journeys } from './lib/journeys.js';
 export { default as settings } from './settings.js';
 
-// TODO rewrite completely to generate GetOfferRequest for specific connection
 export const shopLink = (origin, destination, date, journey, params) => {
   const shortenedJourney = pick(journey, ['type', 'id', 'price']);
   const newLegs = [];
@@ -26,15 +25,10 @@ export const shopLink = (origin, destination, date, journey, params) => {
 
   // process.stdout.write(JSON.stringify(shortenedJourney)+"\n\n")
 
-  let bahncard = params.bc;
-  if (params.class === 1) {
-    if (params.bc === 2) bahncard = 1;
-    if (params.bc === 4) bahncard = 3;
-  }
-
+  // TODO return POST body instead of link
   const url = new URL('https://link.bahn.guru/');
   url.searchParams.append('journey', JSON.stringify(journey));
-  url.searchParams.append('bc', bahncard);
+  url.searchParams.append('bc', params.bc);
   url.searchParams.append('class', params.class);
   return url.toString();
 };

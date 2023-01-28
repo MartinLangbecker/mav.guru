@@ -4,7 +4,6 @@ specifiers:
   apicache: ^1.6.3
   browserify: ^17.0.0
   compression: ^1.7.4
-  db-prices: ^3.0.3
   depcheck: ^1.4.3
   eslint: ^8.16.0
   express: ^4.18.2
@@ -15,6 +14,7 @@ specifiers:
   horsey: ^4.2.2
   js-beautify: ^1.14.3
   lodash: ^4.17.21
+  mav-prices: ^0.3.0
   mav-stations: ^0.2.0
   moment-duration-format: ^2.3.2
   moment-timezone: ^0.5.34
@@ -28,7 +28,6 @@ specifiers:
 dependencies:
   apicache: 1.6.3
   compression: 1.7.4
-  db-prices: 3.0.3
   express: 4.18.2
   fetch-ponyfill: 7.1.0
   hast-util-to-html: 8.0.3
@@ -37,6 +36,7 @@ dependencies:
   horsey: 4.2.2
   js-beautify: 1.14.3
   lodash: 4.17.21
+  mav-prices: 0.3.0
   mav-stations: 0.2.0
   moment-duration-format: 2.3.2
   moment-timezone: 0.5.34
@@ -1041,19 +1041,6 @@ packages:
     resolution: {integrity: sha512-Vy4dx7gquTeMcQR/hDkYLGUnwVil6vk4FOOct+djUnHOUWt+zJPJAaRIXaAFkPXtJjvlY7o3rfRu0/3hpnwoUA==}
     dev: true
 
-  /db-prices/3.0.3:
-    resolution: {integrity: sha512-hJJ4kpIqzfH4YApmGNmrbCbcZUfr4UfS0yqUwf+aNplRSLKgke03xZiVc+cEj2E/GE2wEL2c+fthi8TCXnKj7Q==}
-    engines: {node: '>=10'}
-    dependencies:
-      fetch-ponyfill: 6.1.1
-      lodash.minby: 4.6.0
-      moment-timezone: 0.5.34
-      query-string: 6.14.1
-      slugg: 1.2.1
-    transitivePeerDependencies:
-      - encoding
-    dev: false
-
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
     peerDependencies:
@@ -1088,11 +1075,6 @@ packages:
     dependencies:
       ms: 2.1.2
     dev: true
-
-  /decode-uri-component/0.2.0:
-    resolution: {integrity: sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=}
-    engines: {node: '>=0.10'}
-    dev: false
 
   /decompress-response/3.3.0:
     resolution: {integrity: sha1-gKTdMjdIOEv6JICDYirt7Jgq3/M=}
@@ -1536,14 +1518,6 @@ packages:
     resolution: {integrity: sha512-W+KJc2dmILlPplD/H4K9l9LcAHAfPtP6BY84uVLXQ6Evcz9Lcg33Y2z1IVblT6xdY54PXYVHEv+0Wpq8Io6zkA==}
     dev: true
 
-  /fetch-ponyfill/6.1.1:
-    resolution: {integrity: sha512-rWLgTr5A44/XhvCQPYj0X9Tc+cjUaHofSM4lcwjc9MavD5lkjIhJ+h8JQlavPlTIgDpwhuRozaIykBvX9ItaSA==}
-    dependencies:
-      node-fetch: 2.6.7
-    transitivePeerDependencies:
-      - encoding
-    dev: false
-
   /fetch-ponyfill/7.1.0:
     resolution: {integrity: sha512-FhbbL55dj/qdVO3YNK7ZEkshvj3eQ7EuIGV2I6ic/2YiocvyWv+7jg2s4AyS0wdRU75s3tA8ZxI/xPigb0v5Aw==}
     dependencies:
@@ -1565,11 +1539,6 @@ packages:
     dependencies:
       to-regex-range: 5.0.1
     dev: true
-
-  /filter-obj/1.1.0:
-    resolution: {integrity: sha1-mzERErxsYSehbgFsbF1/GeCAXFs=}
-    engines: {node: '>=0.10.0'}
-    dev: false
 
   /finalhandler/1.2.0:
     resolution: {integrity: sha512-5uXcUVftlQMFnWC9qu/svkWv3GTd2PfUhK/3PLkYNAe7FbqJMt3515HaxE6eRL74GdsriiwujiawdaB1BpEISg==}
@@ -2311,10 +2280,6 @@ packages:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
     dev: true
 
-  /lodash.minby/4.6.0:
-    resolution: {integrity: sha1-ixBXZa6XOVSulEqAKZmbgIC9+MQ=}
-    dev: false
-
   /lodash/4.13.1:
     resolution: {integrity: sha1-g+SxCRP0hJbU0W/sSlYK8u50S2g=}
     dev: false
@@ -2365,6 +2330,16 @@ packages:
     dependencies:
       semver: 6.3.0
     dev: true
+
+  /mav-prices/0.3.0:
+    resolution: {integrity: sha512-jJmdQZNVqO02GiSqmpmG5nOE0V7gBlo0BJR8tmZH094JdD+HRMOBGeq8Kdpuh+fiZaty3VHicxT+jaGTtA74rQ==}
+    engines: {node: '>=19'}
+    dependencies:
+      fetch-ponyfill: 7.1.0
+      moment-timezone: 0.5.34
+    transitivePeerDependencies:
+      - encoding
+    dev: false
 
   /mav-stations/0.2.0:
     resolution: {integrity: sha512-NEldY+1KlXLYIgZ0LIw4ZL9aEpgVWOK9r7Ebh0cLVDEFvWYlhfgrzB6qYYXXv0J3wMS7iwGZBXB4N+OnwXbH+g==}
@@ -2886,16 +2861,6 @@ packages:
       lodash: 4.17.21
     dev: true
 
-  /query-string/6.14.1:
-    resolution: {integrity: sha512-XDxAeVmpfu1/6IjyT/gXHOl+S0vQ9owggJ30hhWKdHAsNPOcasn5o9BW0eejZqL2e4vMjhAxoW3jVHcD6mbcYw==}
-    engines: {node: '>=6'}
-    dependencies:
-      decode-uri-component: 0.2.0
-      filter-obj: 1.1.0
-      split-on-first: 1.1.0
-      strict-uri-encode: 2.0.0
-    dev: false
-
   /querystring-es3/0.2.1:
     resolution: {integrity: sha1-nsYfeQSYdXB9aUFFlv2Qek1xHnM=}
     engines: {node: '>=0.4.x'}
@@ -3207,10 +3172,6 @@ packages:
     resolution: {integrity: sha512-cSFtAPtRhljv69IK0hTVZQ+OfE9nePi/rtJmw5UjHeVyVroEqJXP1sFztKUy1qU+xvz3u/sfYJLa947b7nAN2Q==}
     dev: true
 
-  /slugg/1.2.1:
-    resolution: {integrity: sha1-51KvIkGvPycURjxd4iXOpHYIdAo=}
-    dev: false
-
   /source-map-js/1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
     engines: {node: '>=0.10.0'}
@@ -3232,11 +3193,6 @@ packages:
 
   /space-separated-tokens/2.0.1:
     resolution: {integrity: sha512-ekwEbFp5aqSPKaqeY1PGrlGQxPNaq+Cnx4+bE2D8sciBQrHpbwoBbawqTN2+6jPs9IdWxxiUcN0K2pkczD3zmw==}
-    dev: false
-
-  /split-on-first/1.1.0:
-    resolution: {integrity: sha512-43ZssAJaMusuKWL8sKUBQXHWOpq8d6CfN/u1p4gUzfJkM05C8rxTmYrkIPTXapZpORA6LkkzcUulJ8FqA7Uudw==}
-    engines: {node: '>=6'}
     dev: false
 
   /split2/3.2.2:
@@ -3283,11 +3239,6 @@ packages:
       inherits: 2.0.4
       readable-stream: 2.3.7
     dev: true
-
-  /strict-uri-encode/2.0.0:
-    resolution: {integrity: sha1-ucczDHBChi9rFC3CdLvMWGbONUY=}
-    engines: {node: '>=4'}
-    dev: false
 
   /string-width/4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}

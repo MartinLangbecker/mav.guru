@@ -4,7 +4,7 @@ const autocomplete = require('horsey');
 const fetch = require('fetch-ponyfill')().fetch;
 const querystring = require('querystring').stringify;
 
-// TODO replace with  own autocomplete implementation
+// TODO replace with own autocomplete implementation
 const addAutocomplete = (api) => {
   autocomplete(document.querySelector('#originInput'), {
     source: (data, done) => {

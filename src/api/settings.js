@@ -1,70 +1,71 @@
-import { h } from 'hastscript'
+import { h } from 'hastscript';
 
 const settings = {
-	title: 'Bahn-Preiskalender',
-	description: 'Der Bahn-Guru hilft dir dabei, die günstigsten Sparpreise der Deutschen Bahn zu finden. 🚅',
-	analyticsId: '8b11a68a-f01c-4019-a4d2-1033ca10bc16',
-	timezone: 'Europe/Berlin',
-	scripts: ['./bundle/bahn.js'],
-	styles: ['./bahn.css'],
-	icon: './bahn.png',
-	ogTitle: 'bahn.guru - der Bahn-Preiskalender',
-	ogDescription: 'Der Bahn-Guru hilft dir dabei, die günstigsten Sparpreise der Deutschen Bahn zu finden. 🚅',
-	ogImage: 'https://bahn.guru/assets/screenshot.png',
-	originPlaceholder: 'Startbahnhof',
-	destinationPlaceholder: 'Zielbahnhof',
-	shopLinkTitle: 'zum Bahn-Shop',
-	faq: [
-		{
-			title: 'Ist dies eine offizielle Website der Deutschen Bahn?',
-			description: [
-				'Nein, der Bahn-Guru ist ein momentan von der DB geduldetes Projekt ehrenamtlicher Open-Source-Softwareentwickler vom ',
-				h('a', { href: 'https://codefor.de/berlin/' }, 'OK Lab Berlin'),
-				'. Alle Preisdaten sind daher unverbindlich, bitte überprüfen Sie Ihre Suchergebnisse auf der Website der ',
-				h('a', { href: 'http://bahn.de' }, 'Deutschen Bahn'),
-				'.',
-			],
-		},
-		{
-			title: 'Woher stammen die Daten?',
-			description: [
-				'Diese Website nutzt eine ',
-				h('a', { href: 'https://github.com/juliuste/db-prices' }, 'inoffizielle Schnittstelle'),
-				' der Deutschen Bahn. Kurzgefasst: Wie Scraping, nur mit weniger Aufwand und Traffic für alle Beteiligten.',
-			],
-		},
-		{
-			title: 'Wo finde ich den Quellcode?',
-			description: [
-				'Der ',
-				h('a', { href: 'https://github.com/juliuste/bahn.guru/blob/main/license' }, 'ISC-lizenzierte'),
-				' Quellcode kann auf ',
-				h('a', { href: 'https://github.com/juliuste/bahn.guru' }, 'GitHub'),
-				' abgerufen werden.',
-			],
-		},
-		{
-			title: 'Verdient ihr mit dieser Website Geld?',
-			description: 'Nein. Keine Werbung, keine Affiliate Links. Theoretisch macht diese Website wegen der (niedrigen) Serverkosten sogar ein Bisschen Verlust. Aber wir finden: Das ist es wert!',
-		},
-		{
-			title: 'Warum keine Fernbuspreise?',
-			description: 'Es wäre in der Tat spannend, auch einen Vergleich zu Fernbuspreisen anzubieten. Das wird jedoch leider mittelfristig nicht geschehen. Kurze Begründung: Wir trauen uns nicht. Längere Begründung: Wir existieren derzeit nur unter Duldung der Deutschen Bahn, da diese Website der DB nicht schadet und im besten Fall noch neue Kunden beschert. Listeten wir hier jedoch auch Fernbuspreise auf, könnte man uns ggf. vorwerfen, Kunden von der DB zur Konkurrenz zu treiben.',
-		},
-	],
-	greeting: { // can be null
-		dates: ['2021-01-27'],
-		title: '76. Jahrestag der Befreiung des deutschen Vernichtungslagers Auschwitz-Birkenau',
-		message: [
-			h('br'),
-			'Am 27. Januar 1945 befreite die Rote Armee das deutsche Konzentrations- und Vernichtungslager Auschwitz-Birkenau, Schauplatz des größten Verbrechens der Menschheitsgeschichte. Die Ermordung der europäischen Juden (Shoah), der Sinti und Roma (Porajmos), Homosexuellen, Zeugen Jehovas und Millionen weiterer Menschen, insbesondere aus Osteuropa, wäre ohne die logistische Organisation durch die willfährige deutsche Reichsbahn nicht möglich gewesen.',
-			h('br'),
-			h('br'),
-			'Wenngleich die meisten Deutschen heute keine Schuld an den ungeheuerlichen Verbrechen tragen, die im dunkelsten Kapitel unserer Geschichte im Namen dieses Landes begangen und von einem großen Teil seiner Bevölkerung mitgetragen wurden, ist es unsere Pflicht, die Erinnerung an das Geschehene zu bewahren und auf die historische Verantwortung unseres Staates sowie beteiligter Organisationen hinzuweisen.',
-			h('br'),
-			h('br'),
-			'Als ehrenamtliche Betreiber dieser Seite, die zwar offiziell nicht mit der Deutschen Bahn assoziiert ist, aber doch in gewisser Hinsicht als (kleiner) Teil ihres erweiterten Ökosystems gesehen werden kann, hoffen wir, dass die DB als Nachfolgerin der deutschen Reichsbahn zu dieser historischen Verantwortung steht.',
-		],
-	},
-}
-export default settings
+  title: 'Bahn-Preiskalender',
+  description:
+    'Der Bahn-Guru hilft dir dabei, die günstigsten Sparpreise der Ungarischen Bahn (MÁV) zu finden. 🚅',
+  // analyticsId: '8b11a68a-f01c-4019-a4d2-1033ca10bc16',
+  timezone: 'Europe/Berlin',
+  scripts: ['./bundle/bahn.js'],
+  styles: ['./bahn.css'],
+  icon: './bahn.png',
+  ogTitle: 'bahn.guru - der Bahn-Preiskalender',
+  ogDescription:
+    'Der Bahn-Guru hilft dir dabei, die günstigsten Sparpreise der Ungarischen Bahn (MÁV) zu finden. 🚅',
+  ogImage: 'https://bahn.guru/assets/screenshot.png',
+  originPlaceholder: 'Startbahnhof',
+  destinationPlaceholder: 'Zielbahnhof',
+  shopLinkTitle: 'zum Bahn-Shop',
+  faq: [
+    {
+      title: 'Ist dies eine offizielle Website der Ungarischen Bahn?',
+      description: [
+        'Nein, der Bahn-Guru ist ein Projekt ehrenamtlicher Open-Source-Softwareentwickler. Alle Preisdaten sind daher unverbindlich. Bitte überprüfen Sie Ihre Suchergebnisse auf der Website der ',
+        h('a', { href: 'https://jegy.mav.hu/' }, 'MÁV'),
+        '.',
+      ],
+    },
+    {
+      title: 'Woher stammen die Daten?',
+      description: [
+        'Diese Website nutzt eine ',
+        h(
+          'a',
+          { href: 'https://github.com/martinlangbecker/mav-prices' },
+          'inoffizielle Schnittstelle'
+        ),
+        ' der Ungarischen Bahn (Magyar Államvasutak, MÁV). Kurzgefasst: Wie Scraping, nur mit weniger Aufwand und Traffic für alle Beteiligten.',
+      ],
+    },
+    {
+      title: 'Hast du die Software komplett selbst geschrieben?',
+      description: [
+        'Nein, den größten Teil habe ich von ',
+        h('a', { href: 'https://bahn.guru/' }, 'bahn.guru'),
+        ' kopiert und lediglich für eine andere API angepasst.',
+      ],
+    },
+    {
+      title: 'Wo finde ich den Quellcode?',
+      description: [
+        'Der ',
+        h(
+          'a',
+          {
+            href: 'https://github.com/martinlangbecker/mav.guru/blob/main/license',
+          },
+          'ISC-lizenzierte'
+        ),
+        ' Quellcode kann auf ',
+        h(
+          'a',
+          { href: 'https://github.com/martinlangbecker/mav.guru' },
+          'GitHub'
+        ),
+        ' abgerufen werden.',
+      ],
+    },
+  ],
+  greeting: null,
+};
+export default settings;
