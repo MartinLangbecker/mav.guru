@@ -33,7 +33,7 @@ export const input = (params) => [
       optionHTML(5, '15-16', params.age === 5),
       optionHTML(6, '16-18', params.age === 6),
       optionHTML(7, '18-26', params.age === 7),
-      optionHTML(7, '26+', params.age === 7),
+      optionHTML(8, '26+', params.age === 8),
     ]),
     ', ',
   ]),
@@ -100,13 +100,25 @@ export const text = (params) => {
   const result = [];
   if (params.class && params.class === 1)
     result.push(params.class + '. Klasse', ', ');
-  if (params.bc && (params.bc === 1 || params.bc === 2))
-    result.push('mit BahnCard 25', ', ');
-  if (params.bc && (params.bc === 3 || params.bc === 4))
-    result.push('mit BahnCard 50', ', ');
-  if (params.bc && (params.bc === 5 || params.bc === 6))
-    result.push('mit BahnCard 100', ', ');
-  if (params.age && params.age === 7) result.push('26+ Jahre', ', ');
+  if (params.bc) {
+    if (params.bc === 1 || params.bc === 2)
+      result.push('mit BahnCard 25', ', ');
+    if (params.bc === 3 || params.bc === 4)
+      result.push('mit BahnCard 50', ', ');
+    if (params.bc === 5 || params.bc === 6)
+      result.push('mit BahnCard 100', ', ');
+  }
+  if (params.age) {
+    if (params.age === 0) result.push('0-4 Jahre', ', ');
+    if (params.age === 1) result.push('4-6 Jahre', ', ');
+    if (params.age === 2) result.push('6-12 Jahre', ', ');
+    if (params.age === 3) result.push('12-14 Jahre', ', ');
+    if (params.age === 4) result.push('14-15 Jahre', ', ');
+    if (params.age === 5) result.push('15-16 Jahre', ', ');
+    if (params.age === 6) result.push('16-18 Jahre', ', ');
+    if (params.age === 7) result.push('18-26 Jahre', ', ');
+    if (params.age === 8) result.push('26+ Jahre', ', ');
+  }
   if (params.departureAfter && +params.departureAfter > 0)
     result.push('ab ' + params.departureAfter.format('HH:mm') + ' Uhr', ', ');
   if (params.arrivalBefore && +params.arrivalBefore > 0)
@@ -126,7 +138,7 @@ export const text = (params) => {
 export const url = (params) => {
   const result = [];
   if (params.class) result.push('class=' + params.class);
-  if (params.bc) result.push('bc=' + params.bcOriginal);
+  if (params.bc) result.push('bc=' + params.bc);
   if (params.age) result.push('age=' + params.age);
   if (params.departureAfter)
     result.push('departureAfter=' + params.departureAfter.format('HH:mm'));

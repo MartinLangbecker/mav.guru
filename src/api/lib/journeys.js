@@ -11,7 +11,9 @@ const journeys = (params, day) => {
     moment(day).toDate(),
     {
       class: params.class,
-      travellers: [{ type: params.age, discounts: [params.bc] }],
+      travellers: [
+        { type: params.age, discounts: params.bc ? [params.bc] : [] },
+      ],
     }
   )
     .then((results) =>
