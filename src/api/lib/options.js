@@ -1,8 +1,4 @@
 import { h } from 'hastscript';
-// eslint-disable-next-line no-unused-vars
-import moment from 'moment-timezone';
-// eslint-disable-next-line no-unused-vars
-import mdf from 'moment-duration-format';
 import isNull from 'lodash/isNull.js';
 
 const optionHTML = (value, text, checked) => {
