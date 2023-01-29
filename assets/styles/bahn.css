@@ -20,10 +20,15 @@
 #duration input{
 	width: 1.5em;
 }
+
 #departureAfter input, #arrivalBefore input{
 	width: 2.8em;
 }
 
 #maxChanges input{
 	width: 1.1em;
+}
+
+#trick{
+  width: 5em;
 }

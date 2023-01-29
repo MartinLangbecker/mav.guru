@@ -92,6 +92,15 @@ export const input = (params) => [
       }),
       ' Umstiege',
     ]),
+    ', ',
+  ]),
+  h('span.optRow', [
+    'Hegyeshalom-Trick: ',
+    h('select', { name: 'trick', id: 'trick' }, [
+      optionHTML(0, '--', params.trick === 0),
+      optionHTML(1, 'vor Start', params.trick === 1),
+      optionHTML(2, 'nach Ziel', params.trick === 2),
+    ]),
     '.',
   ]),
 ];
@@ -131,6 +140,10 @@ export const text = (params) => {
       result.push('max. ' + params.maxChanges + ' Umstieg', ', ');
     else result.push('max. ' + params.maxChanges + ' Umstiege', ', ');
   }
+  if (params.trick) {
+    if (params.trick === 1) result.push('Hegyeshalom-Trick am Anfang', ', ');
+    if (params.trick === 2) result.push('Hegyeshalom-Trick am Ende', ', ');
+  }
   if (result.length) result.pop();
   return result;
 };
@@ -147,5 +160,6 @@ export const url = (params) => {
   if (params.duration) result.push('duration=' + params.duration);
   if (!isNull(params.maxChanges))
     result.push('maxChanges=' + params.maxChanges);
+  if (params.trick) result.push('trick=' + params.trick);
   return result;
 };
