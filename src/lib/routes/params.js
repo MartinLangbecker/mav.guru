@@ -7,9 +7,7 @@ const createParseParams = (api) => async (rawParams, opt) => {
 
   try {
     const [origin, destination] = await Promise.all([
-      // eslint-disable-next-line n/handle-callback-err
       api.station(rawParams.origin).catch((_) => null),
-      // eslint-disable-next-line n/handle-callback-err
       api.station(rawParams.destination).catch((_) => null),
     ]);
 

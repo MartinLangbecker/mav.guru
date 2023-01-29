@@ -32,8 +32,7 @@ const parseParams = (params) => {
   const settings = {
     class: 2,
     bc: 0,
-    age: 7,
-    bcOriginal: 0,
+    age: 8,
     duration: null,
     departureAfter: null,
     arrivalBefore: null,
@@ -43,10 +42,11 @@ const parseParams = (params) => {
   if (+params.class === 1 || +params.class === 2)
     settings.class = +params.class;
   // BahnCard
-  if ([0, 1, 3, 5].indexOf(+params.bc) !== -1) {
-    settings.bc =
-      settings.class === 2 ? +params.bc : +params.bc === 0 ? 0 : +params.bc - 1;
-    settings.bcOriginal = +params.bc;
+  if ([1, 3, 5].indexOf(+params.bc) !== -1) {
+    settings.bc = +params.bc;
+  }
+  if ([...Array(9).keys()].indexOf(+params.age) !== -1) {
+    settings.age = +params.age;
   }
   // duration
   if (+params.duration && +params.duration > 0 && +params.duration < 24)

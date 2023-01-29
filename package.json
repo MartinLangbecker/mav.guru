@@ -47,7 +47,7 @@
     "horsey": "^4.2.2",
     "js-beautify": "^1.14.3",
     "lodash": "^4.17.21",
-    "mav-prices": "^0.3.0",
+    "mav-prices": "^0.3.4",
     "mav-stations": "^0.2.0",
     "moment-duration-format": "^2.3.2",
     "moment-timezone": "^0.5.34",
