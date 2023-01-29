@@ -5,18 +5,30 @@ import isNull from 'lodash/isNull.js';
 
 const journeys = (params, day) => {
   const dayTimestamp = +moment.tz(day, settings.timezone).startOf('day');
-  return queryPrices(
-    params.origin.id,
-    params.destination.id,
-    moment(day).toDate(),
-    {
-      class: params.class,
-      duration: 1440,
-      travellers: [
-        { type: params.age, discounts: params.bc ? [params.bc] : [] },
-      ],
-    }
-  )
+
+  // Hegyeshalom trick
+  let origin, destination, via;
+  const hegyeshalom = '005501362'; // station id
+  if (params.trick === 1) {
+    origin = hegyeshalom;
+    via = params.origin.id;
+    destination = params.destination.id;
+  } else if (params.trick === 2) {
+    origin = params.origin.id;
+    via = params.destination.id;
+    destination = hegyeshalom;
+  } else {
+    origin = params.origin.id;
+    via = undefined;
+    destination = params.destination.id;
+  }
+
+  return queryPrices(origin, destination, moment(day).toDate(), {
+    class: params.class,
+    duration: 1440,
+    intermediateStations: via ? [{ stationCode: via, durationOfStay: 0 }] : [],
+    travellers: [{ type: params.age, discounts: params.bc ? [params.bc] : [] }],
+  })
     .then((results) =>
       results.filter((j) => {
         const departure = new Date(j.legs[0].departure);

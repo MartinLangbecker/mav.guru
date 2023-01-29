@@ -11,12 +11,11 @@ Screenshot of bahn.guru:
 
 ## TODOs
 
-- fix formatting for start & end time (add colon if missing)
-- implement autocomplete with data from mav-stations
 - fix shop link
-- implement Hegyeshalom trick
-- add additional discount cards (see mav-prices)
+- implement autocomplete with data from mav-stations
 - improve search results (remove duplicate search results; might need to fix this in mav-prices)
+- add additional discount cards (see mav-prices)
+- fix formatting for start & end time (add colon if missing)
 
 ## See also
 
