@@ -30,6 +30,12 @@ const errorBox = (error) => {
   return [];
 };
 
+const successBox = (message) => {
+  if (message)
+    return h('div', { id: 'success', class: 'subtitle' }, [h('span', message)]);
+  return [];
+};
+
 const createTemplate =
   (api) =>
   ({ params, error }) => {
@@ -37,6 +43,9 @@ const createTemplate =
     const body = [
       h('form', { id: 'page', action: './calendar', method: 'GET' }, [
         h('div#header', [h('h1', 'Preiskalender')]),
+        successBox(
+          'Dies ist der MVP für die MÁV-Suche. Die API ist seeehr langsam, habt also ein wenig Geduld (30-60 Sekunden pro Kalenderseite).'
+        ),
         errorBox(error),
         h('div#form', [
           h('div', { id: 'origin', class: 'station' }, [

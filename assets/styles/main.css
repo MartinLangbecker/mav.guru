@@ -17,6 +17,11 @@ input{
 	color: #f60;
 }
 
+#success{
+	color: #0a8;
+	max-width: 850px;
+}
+
 #form{
     display: flex;
     flex-direction: column;

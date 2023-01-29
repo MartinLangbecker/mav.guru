@@ -9,6 +9,15 @@ Screenshot of bahn.guru:
 
 [![bahn.guru](https://i.imgur.com/bJmvAJp.png)](https://bahn.guru)
 
+## TODOs
+
+- fix formatting for start & end time (add colon if missing)
+- implement autocomplete with data from mav-stations
+- fix shop link
+- implement Hegyeshalom trick
+- add additional discount cards (see mav-prices)
+- improve search results (remove duplicate search results; might need to fix this in mav-prices)
+
 ## See also
 
 - [mav-prices](https://github.com/martinlangbecker/mav-prices#mav-prices) – Find journey prices using the MAV API.
