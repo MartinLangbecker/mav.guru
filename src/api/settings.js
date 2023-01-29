@@ -9,9 +9,9 @@ const settings = {
   scripts: ['./bundle/bahn.js'],
   styles: ['./bahn.css'],
   icon: './bahn.png',
-  ogTitle: 'bahn.guru - der Bahn-Preiskalender',
+  ogTitle: 'mav.guru - der MÁV-Preiskalender',
   ogDescription:
-    'Der Bahn-Guru hilft dir dabei, die günstigsten Sparpreise der Ungarischen Bahn (MÁV) zu finden. 🚅',
+    'Der MÁV-Guru hilft dir dabei, die günstigsten Sparpreise der Ungarischen Bahn (MÁV) zu finden. 🚅',
   ogImage: 'https://bahn.guru/assets/screenshot.png',
   originPlaceholder: 'Startbahnhof',
   destinationPlaceholder: 'Zielbahnhof',
@@ -63,6 +63,21 @@ const settings = {
           'GitHub'
         ),
         ' abgerufen werden.',
+      ],
+    },
+    {
+      title: 'Was ist der "Hegyeshalom-Trick"?',
+      description: [
+        'Bei der ungarischen Bahn lassen sich nur Tickets buchen, wenn sich mindestens der Start- oder Zielbahnhof in Ungarn befinden. ',
+        'Diese Regel kann man gewissermaßen umgehen, indem man im Vor- bzw. Nachlauf zur eigentlich geplanten Fahrt eine Verbindung nach Ungarn anfragt. ',
+        'Aus Westeuropa kommend bietet sich hier Hegyeshalom an, welches ein Grenzbahnhof in der nordwestlichsten Ecke Ungarns ist. ',
+        h('br'),
+        h('br'),
+        'In der Vergangenheit war es so möglich, mittels des Angebots "Start Europa" an sehr günstige Tickets zu gelangen. ',
+        'Mittlerweile ist es eher eine Notwendigkeit, um Ticketpreise für Verbindungen ermitteln zu können, welche nicht von oder nach Ungarn verlaufen.',
+        h('br'),
+        h('br'),
+        'Beispiel: Bei der Verbindung "Hamburg Hbf - Wien Hbf" mit "Hegyeshalom-Tick: Ende" wird eine Verbindungssuche für "Hamburg Hbf - Hegyeshalom" mit Zwischenhalt Wien Hbf gestartet.',
       ],
     },
   ],
