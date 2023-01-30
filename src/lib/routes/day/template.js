@@ -1,7 +1,5 @@
 import { h } from 'hastscript';
 import moment from 'moment-timezone';
-// eslint-disable-next-line no-unused-vars
-import mdf from 'moment-duration-format';
 import sort from 'lodash/sortBy.js';
 import tail from 'lodash/tail.js';
 import reverse from 'lodash/reverse.js';
@@ -10,11 +8,17 @@ import * as helpers from '../helpers.js';
 const productIndex = [
   'Bus',
   'BUS',
+  'S',
   'RB',
   'RE',
+  'IR',
   'IRE',
+  'ER',
   'IC',
   'IEC',
+  'NJ',
+  'RJ',
+  'RJX',
   'EC',
   'ICE',
 ];
@@ -80,11 +84,12 @@ const parseJourney = (api, params) => (journey) => {
     via: collectVias(journey),
     link:
       api.shopLink(
-        params.origin,
-        params.destination,
-        moment(journey.legs[0].departure).tz(api.settings.timezone),
-        journey,
-        params
+        params.origin.id,
+        params.destination.id,
+        params.trick,
+        moment(journey.legs[0].departure)
+          .tz(api.settings.timezone)
+          .toISOString()
       ) || '#',
   };
 };
@@ -145,11 +150,13 @@ const journeyTable = (api, data) => {
         h('td', products(journey)),
         h('td.price', [
           h(
-            // TODO build POST request with constructed body
-            // tutorial: https://stackoverflow.com/questions/3915917/make-a-link-use-post-instead-of-get
-            // link: https://jegy-a.mav.hu/IK_API_PROD/api/OfferRequestApi/GetOfferRequest
             'a',
-            { href: journey.link, title: api.settings.shopLinkTitle },
+            {
+              href: journey.link,
+              title: api.settings.shopLinkTitle,
+              rel: 'noopener noreferrer',
+              target: '_blank',
+            },
             price(journey)
           ),
         ]),
