@@ -1,4 +1,3 @@
-import pick from 'lodash/pick.js';
 import { URL } from 'url';
 
 export { default as params } from './lib/params.js';
@@ -7,28 +6,22 @@ export { default as station } from './lib/station.js';
 export { default as journeys } from './lib/journeys.js';
 export { default as settings } from './settings.js';
 
-export const shopLink = (origin, destination, date, journey, params) => {
-  const shortenedJourney = pick(journey, ['type', 'id', 'price']);
-  const newLegs = [];
-  for (const leg of journey.legs) {
-    const newLeg = pick(leg, [
-      'origin',
-      'destination',
-      'departure',
-      'arrival',
-      'line',
-    ]);
-    newLeg.line = pick(leg.line, ['type', 'name']);
-    newLegs.push(newLeg);
+export const shopLink = (origin, destination, trick, date) => {
+  const hegyeshalom = '005501362';
+  let via = '';
+  if (trick === 1) {
+    via = origin;
+    origin = hegyeshalom;
+  } else if (trick === 2) {
+    via = destination;
+    destination = hegyeshalom;
   }
-  shortenedJourney.legs = newLegs;
 
-  // process.stdout.write(JSON.stringify(shortenedJourney)+"\n\n")
-
-  // TODO return POST body instead of link
-  const url = new URL('https://link.bahn.guru/');
-  url.searchParams.append('journey', JSON.stringify(journey));
-  url.searchParams.append('bc', params.bc);
-  url.searchParams.append('class', params.class);
+  // https://jegy.mav.hu/menetrend/viszonylati?i=008016043&e=005501362&d=2023-01-30T23:00:00.000Z&k=008101003
+  const url = new URL('https://jegy.mav.hu/menetrend/viszonylati');
+  url.searchParams.append('i', origin);
+  url.searchParams.append('k', via);
+  url.searchParams.append('e', destination);
+  url.searchParams.append('d', date);
   return url.toString();
 };
