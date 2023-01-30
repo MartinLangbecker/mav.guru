@@ -12,8 +12,8 @@ Screenshot of bahn.guru:
 ## TODOs
 
 - fix shop link
+- optimize search time by passing parameters for departure & arrival time & max. changes
 - implement autocomplete with data from mav-stations
-- improve search results (remove duplicate search results; might need to fix this in mav-prices)
 - add additional discount cards (see mav-prices)
 - fix formatting for start & end time (add colon if missing)
 

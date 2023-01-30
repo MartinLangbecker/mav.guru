@@ -44,7 +44,7 @@ const createTemplate =
       h('form', { id: 'page', action: './calendar', method: 'GET' }, [
         h('div#header', [h('h1', 'Preiskalender')]),
         successBox(
-          'Dies ist der MVP für die MÁV-Suche. Die API ist seeehr langsam, habt also ein wenig Geduld (30-60 Sekunden pro Kalenderseite).'
+          'Dies ist der Preiskalender für die Ungarische Staatsbahn (MÁV). Die Suche ist sehr langsam, bitte habt also ein wenig Geduld (30-60 Sekunden pro Kalenderseite).'
         ),
         errorBox(error),
         h('div#form', [

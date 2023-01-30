@@ -13,14 +13,16 @@ export const input = (params) => [
       optionHTML(1, '1.', params.class === 1),
       optionHTML(2, '2.', params.class !== 1),
     ]),
-    ' Klasse, BahnCard: ',
+    ' Klasse',
+  ]),
+  h('span.optRow', [
+    'BahnCard: ',
     h('select', { name: 'bc', id: 'bc' }, [
       optionHTML(0, '--', params.bc === 0),
-      optionHTML(1, '25', params.bc === 1 || params.bc === 2),
-      optionHTML(3, '50', params.bc === 3 || params.bc === 4),
-      optionHTML(5, '100', params.bc === 5 || params.bc === 6),
+      optionHTML(1, '25', params.bc === 1),
+      optionHTML(3, '50', params.bc === 3),
+      optionHTML(5, '100', params.bc === 5),
     ]),
-    ', ',
   ]),
   h('span.optRow', [
     'Alter: ',
@@ -35,7 +37,6 @@ export const input = (params) => [
       optionHTML(7, '18-26', params.age === 7),
       optionHTML(8, '26+', params.age === 8),
     ]),
-    ', ',
   ]),
   h('span.optRow', [
     h('label#departureAfter', [
@@ -50,7 +51,6 @@ export const input = (params) => [
       }),
       ' Uhr',
     ]),
-    ', ',
   ]),
   h('span.optRow', [
     h('label#arrivalBefore', [
@@ -63,7 +63,6 @@ export const input = (params) => [
       }),
       ' Uhr',
     ]),
-    ', ',
   ]),
   h('span.optRow', [
     'max. ',
@@ -76,7 +75,6 @@ export const input = (params) => [
       }),
       ' h Fahrzeit',
     ]),
-    ', ',
   ]),
   h('span.optRow', [
     'max. ',
@@ -92,30 +90,24 @@ export const input = (params) => [
       }),
       ' Umstiege',
     ]),
-    ', ',
   ]),
   h('span.optRow', [
-    'Hegyeshalom-Trick: ',
+    'Ungarn-Trick: ',
     h('select', { name: 'trick', id: 'trick' }, [
       optionHTML(0, '--', params.trick === 0),
-      optionHTML(1, 'vor Start', params.trick === 1),
-      optionHTML(2, 'nach Ziel', params.trick === 2),
+      optionHTML(1, 'Ungarn als Start', params.trick === 1),
+      optionHTML(2, 'Ungarn als Ziel', params.trick === 2),
     ]),
-    '.',
   ]),
 ];
 
 export const text = (params) => {
   const result = [];
-  if (params.class && params.class === 1)
-    result.push(params.class + '. Klasse', ', ');
+  if (params.class === 1) result.push(params.class + '. Klasse', ', ');
   if (params.bc) {
-    if (params.bc === 1 || params.bc === 2)
-      result.push('mit BahnCard 25', ', ');
-    if (params.bc === 3 || params.bc === 4)
-      result.push('mit BahnCard 50', ', ');
-    if (params.bc === 5 || params.bc === 6)
-      result.push('mit BahnCard 100', ', ');
+    if (params.bc === 1) result.push('mit BahnCard 25', ', ');
+    if (params.bc === 3) result.push('mit BahnCard 50', ', ');
+    if (params.bc === 5) result.push('mit BahnCard 100', ', ');
   }
   if (params.age) {
     if (params.age === 0) result.push('0-4 Jahre', ', ');
@@ -126,7 +118,6 @@ export const text = (params) => {
     if (params.age === 5) result.push('15-16 Jahre', ', ');
     if (params.age === 6) result.push('16-18 Jahre', ', ');
     if (params.age === 7) result.push('18-26 Jahre', ', ');
-    if (params.age === 8) result.push('26+ Jahre', ', ');
   }
   if (params.departureAfter && +params.departureAfter > 0)
     result.push('ab ' + params.departureAfter.format('HH:mm') + ' Uhr', ', ');
@@ -134,15 +125,15 @@ export const text = (params) => {
     result.push('bis ' + params.arrivalBefore.format('HH:mm') + ' Uhr', ', ');
   if (params.duration && params.duration > 0)
     result.push('Fahrzeit bis ' + params.duration + ' Stunden', ', ');
-  if (!isNull(params.maxChanges)) {
+  if (params.maxChanges) {
     if (params.maxChanges === 0) result.push('keine Umstiege', ', ');
     else if (params.maxChanges === 1)
       result.push('max. ' + params.maxChanges + ' Umstieg', ', ');
     else result.push('max. ' + params.maxChanges + ' Umstiege', ', ');
   }
   if (params.trick) {
-    if (params.trick === 1) result.push('Hegyeshalom-Trick am Anfang', ', ');
-    if (params.trick === 2) result.push('Hegyeshalom-Trick am Ende', ', ');
+    if (params.trick === 1) result.push('Ungarn als Start', ', ');
+    if (params.trick === 2) result.push('Ungarn als Ziel', ', ');
   }
   if (result.length) result.pop();
   return result;

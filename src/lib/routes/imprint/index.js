@@ -28,14 +28,13 @@ const generate = (api) => {
         h('h2', 'Impressum & Datenschutz'),
         h('div', { class: 'section' }, [
           h('p', [
-            h('a', { href: 'https://juliustens.eu' }, 'Julius Tens'),
-            ', ',
+            'Martin Langbecker, ',
             h(
               'a',
-              { href: 'mailto:bahnguru@juliustens.eu' },
-              'bahnguru@juliustens.eu'
+              { href: 'mailto:martin.langbecker@gmail.com' },
+              'martin.langbecker@gmail.com'
             ),
-            ', Schlickweg 10, 14129 Berlin.',
+            '.',
           ]),
         ]),
         h('div', { class: 'section' }, [
@@ -44,12 +43,16 @@ const generate = (api) => {
             h(
               'a',
               {
-                href: 'https://github.com/juliuste/bahn.guru/blob/main/license',
+                href: 'https://github.com/martinlangbecker/mav.guru/blob/main/license',
               },
               'ISC-lizenziert'
             ),
             '. Der Quellcode ist auf ',
-            h('a', { href: 'https://github.com/juliuste/bahn.guru' }, 'GitHub'),
+            h(
+              'a',
+              { href: 'https://github.com/martinlangbecker/mav.guru' },
+              'GitHub'
+            ),
             ' verfügbar.',
           ]),
         ]),

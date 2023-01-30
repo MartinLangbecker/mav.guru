@@ -6,7 +6,7 @@ import isNull from 'lodash/isNull.js';
 const journeys = (params, day) => {
   const dayTimestamp = +moment.tz(day, settings.timezone).startOf('day');
 
-  // Hegyeshalom trick
+  // Hungary trick
   let origin, destination, via;
   const hegyeshalom = '005501362'; // station id
   if (params.trick === 1) {
@@ -25,7 +25,7 @@ const journeys = (params, day) => {
 
   return queryPrices(origin, destination, moment(day).toDate(), {
     class: params.class,
-    duration: 1440,
+    duration: 1440, // request connection data for 24 hours after start of day
     intermediateStations: via ? [{ stationCode: via, durationOfStay: 0 }] : [],
     travellers: [{ type: params.age, discounts: params.bc ? [params.bc] : [] }],
   })
