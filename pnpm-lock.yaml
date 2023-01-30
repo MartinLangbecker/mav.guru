@@ -14,7 +14,7 @@ specifiers:
   horsey: ^4.2.2
   js-beautify: ^1.14.3
   lodash: ^4.17.21
-  mav-prices: ^0.3.4
+  mav-prices: ^0.3.5
   mav-stations: ^0.2.0
   moment-duration-format: ^2.3.2
   moment-timezone: ^0.5.34
@@ -36,7 +36,7 @@ dependencies:
   horsey: 4.2.2
   js-beautify: 1.14.3
   lodash: 4.17.21
-  mav-prices: 0.3.4
+  mav-prices: 0.3.5
   mav-stations: 0.2.0
   moment-duration-format: 2.3.2
   moment-timezone: 0.5.34
@@ -2331,12 +2331,11 @@ packages:
       semver: 6.3.0
     dev: true
 
-  /mav-prices/0.3.4:
-    resolution: {integrity: sha512-7HxnPCYgQgQNQ26odxHo3D4Lo69KuHKtp4oJa3eCbUWfVoub+ptjIyHy4hwMgFvTWRfGXYsr5kYzEJxLgYWNdg==}
+  /mav-prices/0.3.5:
+    resolution: {integrity: sha512-giuT+hE0Bovrz3VnKUDl0+mC7iXxaagiUsT/K8oudNB0mAwMYkqPICZvL3cZv7HH6ceCA+47J8CBis7fbtXa9g==}
     engines: {node: '>=19'}
     dependencies:
       fetch-ponyfill: 7.1.0
-      moment-timezone: 0.5.34
     transitivePeerDependencies:
       - encoding
     dev: false

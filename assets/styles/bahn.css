@@ -2,6 +2,14 @@
 	color: #db0000;
 }
 
+#options .optRow{
+  background: #dfdfdf;
+  display: inline-block;
+  margin: 0 10px 5px 0;
+  padding: 0 5px;
+  border-radius: 5px;
+}
+
 #class{
 	width: 1.5em;
 	padding-right: 0;
@@ -30,5 +38,5 @@
 }
 
 #trick{
-  width: 5em;
+  width: 8em;
 }

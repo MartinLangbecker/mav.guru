@@ -70,7 +70,7 @@ const parseParams = (params) => {
   )
     settings.maxChanges = maxChanges;
 
-  // Hegyeshalom trick
+  // Hungary trick
   if ([1, 2].indexOf(+params.trick) !== -1) {
     settings.trick = +params.trick;
   }
