@@ -12,5 +12,3 @@ dist
 
 scripts/deploy
 assets/scripts/bundle
-
-.prettierrc
