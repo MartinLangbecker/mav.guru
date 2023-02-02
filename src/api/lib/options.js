@@ -95,7 +95,7 @@ export const input = (params) => [
     'Ungarn-Trick: ',
     h('select', { name: 'trick', id: 'trick' }, [
       optionHTML(0, '--', params.trick === 0),
-      optionHTML(1, 'Ungarn als Start', params.trick === 1),
+      optionHTML(1, 'Ungarn als Start', !params.trick || params.trick === 1),
       optionHTML(2, 'Ungarn als Ziel', params.trick === 2),
     ]),
   ]),

@@ -45,7 +45,7 @@ const createTemplate =
           h(
             'div',
             { class: 'note' },
-            "So funktioniert's: Die Tickets sind meist günstiger, weil Routen über Ungarn und die Ticketsuche der Ungarischen Staatsbahn MÁV genutzt werden. Damit kannst du wie üblich auch nur in Deutschland oder anderen Ländern fahren – auf dem Ticket steht lediglich, dass du über Ungarn fährst."
+            "So funktioniert's: Die Tickets sind meist günstiger, weil Routen über Ungarn und die Ticketsuche der Ungarischen Staatsbahn MÁV genutzt werden. Damit kannst du wie üblich auch nur in Deutschland oder anderen Ländern reisen – auf dem Ticket steht lediglich, dass du über Ungarn fährst."
           ),
           h(
             'div',
