@@ -15,7 +15,7 @@ Screenshot of bahn.guru:
 - optimize search time by passing parameters for departure & arrival time & max. changes
 - add additional discount cards (see mav-prices)
 - fix formatting for start & end time (add colon if missing)
-- train station autocomplete: cache requests to mav-stations API (e.g. for 1 or 30 days)
+- search form: show loading indicator on submit
 
 ## See also
 

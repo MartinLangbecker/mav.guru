@@ -12,3 +12,6 @@ dist
 
 scripts/deploy
 assets/scripts/bundle
+
+# VS Code
+launch.json

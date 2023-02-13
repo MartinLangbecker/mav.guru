@@ -16,7 +16,7 @@ const station = async (name) => {
       .on('data', (station) => {
         if (station.name === name || station.aliasNames.indexOf(name) !== -1) {
           resolve(station);
-          stations().removeAllListeners();
+          stations.removeAllListeners();
         }
       })
       .on('error', () => {

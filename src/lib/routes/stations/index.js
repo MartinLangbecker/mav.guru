@@ -6,7 +6,7 @@ import * as helpers from '../helpers.js';
  * @param api mav-station API
  * @returns list of matching stations
  */
-const createMavStationsRoute = (api) => async (req, res, next) => {
+const createStationsRoute = (api) => async (req, res, next) => {
   const params = req.query;
   // default result limit is 10
   const limit = params.limit ? Number.parseInt(params.limit) : 10;
@@ -15,7 +15,7 @@ const createMavStationsRoute = (api) => async (req, res, next) => {
     ? helpers.cleanStr(params.excludeCountryIso)
     : undefined;
 
-  await api.stationList().then(function (result) {
+  await api.stationList().then((result) => {
     // filter search term
     if (searchterm && searchterm.length) {
       result = result.filter((station) =>
@@ -37,4 +37,4 @@ const createMavStationsRoute = (api) => async (req, res, next) => {
   });
 };
 
-export default createMavStationsRoute;
+export default createStationsRoute;

@@ -1,14 +1,14 @@
-'use strict'
+'use strict';
 
-const addAutocomplete = require('./common')
+const addAutocomplete = require('./common');
 
 const mavStationsApi = {
-  url: '/mav-stations',
+  url: '/stations',
   query: {
     limit: 5,
     excludeCountryIso: 'HU',
   },
-  adapter: res => res.map(e => e.name),
-}
+  adapter: (res) => res.map((e) => e.name),
+};
 
-addAutocomplete(mavStationsApi)
+addAutocomplete(mavStationsApi);
