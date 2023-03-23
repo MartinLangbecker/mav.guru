@@ -81,3 +81,10 @@ export const staticHeader = (api) => {
 
 export const toHtmlString = (e) =>
   jsBeautify.html(toHtml(h(undefined, u('doctype'), h('html', e))));
+
+/**
+ * clean string for easier comparison
+ * @param {string} str string to clean
+ * @returns cleaned string
+ */
+export const cleanStr = (str) => str.toLowerCase().trim();

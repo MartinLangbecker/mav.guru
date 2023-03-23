@@ -30,12 +30,6 @@ const errorBox = (error) => {
   return [];
 };
 
-const successBox = (message) => {
-  if (message)
-    return h('div', { id: 'success', class: 'subtitle' }, [h('span', message)]);
-  return [];
-};
-
 const createTemplate =
   (api) =>
   ({ params, error }) => {
@@ -43,9 +37,22 @@ const createTemplate =
     const body = [
       h('form', { id: 'page', action: './calendar', method: 'GET' }, [
         h('div#header', [h('h1', 'Preiskalender')]),
-        successBox(
-          'Dies ist der Preiskalender für die Ungarische Staatsbahn (MÁV). Die Suche ist sehr langsam, bitte habt also ein wenig Geduld (30-60 Sekunden pro Kalenderseite).'
-        ),
+        h('div', { id: 'success', class: 'subtitle' }, [
+          h(
+            'div',
+            'Finde den günstigsten Preis innerhalb der nächsten Wochen.'
+          ),
+          h(
+            'div',
+            { class: 'note' },
+            "So funktioniert's: Die Tickets sind meist günstiger, weil Routen über Ungarn und die Ticketsuche der Ungarischen Staatsbahn MÁV genutzt werden. Damit kannst du wie üblich auch nur in Deutschland oder anderen Ländern reisen – auf dem Ticket steht lediglich, dass du über Ungarn fährst."
+          ),
+          h(
+            'div',
+            { class: 'note' },
+            'Die Suche ist aktuell noch recht langsam (30-60 Sekunden). Hab ein wenig Geduld, es lohnt sich.'
+          ),
+        ]),
         errorBox(error),
         h('div#form', [
           h('div', { id: 'origin', class: 'station' }, [

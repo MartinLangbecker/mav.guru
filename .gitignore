@@ -13,4 +13,5 @@ dist
 scripts/deploy
 assets/scripts/bundle
 
-.prettierrc
+# VS Code
+launch.json

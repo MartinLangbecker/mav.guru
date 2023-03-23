@@ -44,6 +44,7 @@ const createServer = () => {
     calendarRoute,
     imprintRoute,
     faqRoute,
+    stationsRoute,
   } = createRoutes(api);
   express.get('/', greetingRoute, startRoute);
   express.get('/start', startRoute);
@@ -51,7 +52,7 @@ const createServer = () => {
   express.get('/calendar', calendarRoute, startRoute);
   express.get('/imprint', imprintRoute);
   express.get('/faq', faqRoute);
-
+  express.get('/stations', stationsRoute);
   return server;
 };
 

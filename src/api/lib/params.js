@@ -71,7 +71,7 @@ const parseParams = (params) => {
     settings.maxChanges = maxChanges;
 
   // Hungary trick
-  if ([1, 2].indexOf(+params.trick) !== -1) {
+  if ([0, 1, 2].indexOf(+params.trick) !== -1) {
     settings.trick = +params.trick;
   }
 
