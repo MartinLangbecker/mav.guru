@@ -4,6 +4,7 @@ import createDayRoute from './day/index.js';
 import createCalendarRoute from './calendar/index.js';
 import createImprintRoute from './imprint/index.js';
 import createFaqRoute from './faq/index.js';
+import createStationsRoute from './stations/index.js';
 
 const createRoutes = (api) => {
   const greetingRoute = createGreetingRoute(api);
@@ -12,6 +13,7 @@ const createRoutes = (api) => {
   const calendarRoute = createCalendarRoute(api);
   const imprintRoute = createImprintRoute(api);
   const faqRoute = createFaqRoute(api);
+  const stationsRoute = createStationsRoute(api);
   return {
     greetingRoute,
     startRoute,
@@ -19,6 +21,7 @@ const createRoutes = (api) => {
     calendarRoute,
     imprintRoute,
     faqRoute,
+    stationsRoute,
   };
 };
 

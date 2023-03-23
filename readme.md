@@ -13,9 +13,9 @@ Screenshot of bahn.guru:
 
 - improve shop link
 - optimize search time by passing parameters for departure & arrival time & max. changes
-- implement autocomplete with data from mav-stations
 - add additional discount cards (see mav-prices)
 - fix formatting for start & end time (add colon if missing)
+- search form: show loading indicator on submit
 
 ## See also
 

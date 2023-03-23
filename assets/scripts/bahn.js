@@ -1,16 +1,14 @@
-'use strict'
+'use strict';
 
-const addAutocomplete = require('./common')
+const addAutocomplete = require('./common');
 
-const api = {
-	url: 'https://v5.db.transport.rest/locations',
-	query: {
-		results: 5,
-		stations: true,
-		poi: false,
-		addresses: false,
-	},
-	adapter: res => res.map(e => e.name),
-}
+const mavStationsApi = {
+  url: '/stations',
+  query: {
+    limit: 5,
+    // excludeCountryIso: 'HU', // exclude countries in suggest
+  },
+  adapter: (res) => res.map((e) => e.name),
+};
 
-addAutocomplete(api)
+addAutocomplete(mavStationsApi);
