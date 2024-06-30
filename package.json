@@ -1,6 +1,6 @@
 {
   "name": "mav.guru",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "private": true,
   "description": "MAV ticket price calendar",
   "keywords": [
@@ -39,29 +39,30 @@
   "dependencies": {
     "apicache": "^1.6.3",
     "compression": "^1.7.4",
-    "express": "^4.18.2",
+    "express": "^4.19.2",
     "fetch-ponyfill": "^7.1.0",
-    "hast-util-to-html": "^8.0.3",
-    "hastscript": "^7.0.2",
+    "hast-util-to-html": "^8.0.4",
+    "hastscript": "^7.2.0",
     "helmet": "^4.6.0",
     "horsey": "^4.2.2",
-    "js-beautify": "^1.14.3",
+    "js-beautify": "^1.15.1",
     "lodash": "^4.17.21",
-    "mav-prices": "^0.3.5",
-    "mav-stations": "^0.2.0",
+    "mav-prices": "^0.4.0",
+    "mav-stations": "^0.3.2",
     "moment-duration-format": "^2.3.2",
-    "moment-timezone": "^0.5.34",
+    "moment-timezone": "^0.5.45",
     "ms": "^2.1.3",
-    "p-queue": "^7.2.0",
+    "p-queue": "^7.4.1",
     "p-retry": "^4.6.2",
-    "p-timeout": "^5.0.2",
-    "unist-builder": "^3.0.0"
+    "p-timeout": "^5.1.0",
+    "pnpm": "^9.4.0",
+    "unist-builder": "^3.0.1"
   },
   "devDependencies": {
     "browserify": "^17.0.0",
-    "depcheck": "^1.4.3",
-    "eslint": "^8.16.0",
-    "nodemon": "^2.0.16"
+    "depcheck": "^1.4.7",
+    "eslint": "^8.57.0",
+    "nodemon": "^2.0.22"
   },
   "engines": {
     "node": ">=19"
