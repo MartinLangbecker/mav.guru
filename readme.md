@@ -9,6 +9,40 @@ Screenshot of bahn.guru:
 
 [![bahn.guru](https://i.imgur.com/bJmvAJp.png)](https://bahn.guru)
 
+## Installation
+
+This project uses [pnpm](https://pnpm.io/) as a package manager. If you already have npm, you can install pnpm by running:
+
+```shell
+npm install -g pnpm
+```
+
+Then, in the root directory of this project, run:
+
+```shell
+pnpm install
+
+// on Windws systems, run:
+pnpm run build-windows
+
+// otherwise, run:
+pnpm run build
+```
+
+## Usage
+
+You can start the software by running:
+
+```shell
+// on Windws systems, run:
+pnpm run start-windows
+
+// otherwise, run:
+pnpm run start
+```
+
+It will be served to [localhost:3000](http://localhost:3000/) which you can open in your favorite browser.
+
 ## TODOs
 
 - improve shop link
