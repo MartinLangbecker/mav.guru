@@ -50,13 +50,14 @@ input {
   border: 0.15rem solid #077;
   border-radius: 0.2rem;
   font-size: 1.5rem;
-  margin-top: 0.3rem;
-  margin-bottom: 0.3rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   background: #077;
+  min-width: 280px;
 }
 
 .station span {
@@ -78,6 +79,131 @@ input {
   line-height: 120%;
   font-size: 105%;
   border: 0;
+}
+
+#swap {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #077;
+  padding: 0 0.3rem;
+  line-height: 1;
+}
+
+#swap:hover {
+  opacity: 0.7;
+}
+
+#date-row {
+  width: 100%;
+  text-align: center;
+  margin: 0.6rem 0;
+  font-size: 1.1rem;
+  color: #044;
+}
+
+#date-row input[type="date"] {
+  font-size: 1.1rem;
+  padding: 0.2rem 0.4rem;
+  border: 0.15rem solid #077;
+  border-radius: 0.2rem;
+  color: #077;
+}
+
+#mode-toggle {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0.6rem 0;
+  gap: 0;
+}
+
+#mode-toggle label {
+  cursor: pointer;
+  padding: 0.4rem 1rem;
+  font-size: 0.95rem;
+  border: 0.15rem solid #077;
+  color: #077;
+  background: #fff;
+  white-space: nowrap;
+}
+
+#mode-toggle label:first-child {
+  border-radius: 0.3rem 0 0 0.3rem;
+}
+
+#mode-toggle label:last-child {
+  border-radius: 0 0.3rem 0.3rem 0;
+  border-left: none;
+}
+
+#mode-toggle label:has(input:checked) {
+  background: #077;
+  color: #fff;
+}
+
+#mode-toggle input[type="radio"] {
+  display: none;
+}
+
+#options-details {
+  text-align: center;
+  margin: 0.5rem 0 1.5rem;
+  color: #044;
+  font-size: 92.5%;
+}
+
+#options-details summary {
+  cursor: pointer;
+  color: #077;
+  font-style: italic;
+}
+
+.options-section {
+  margin: 0.6rem 0;
+  padding-top: 0.4rem;
+}
+
+.options-section + .options-section {
+  border-top: 1px solid #cee;
+}
+
+.section-label {
+  display: block;
+  font-size: 85%;
+  font-weight: bold;
+  color: #077;
+  margin-bottom: 0.3rem;
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.2rem 1.5rem;
+}
+
+#bestpreis-result {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+#bestpreis-result .cheapest-price {
+  font-size: 2rem;
+}
+
+#bestpreis-result .cheapest-price .amount {
+  color: #077;
+  font-weight: bold;
+}
+
+#bestpreis-result .info {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0.3rem 0;
 }
 
 #go {
@@ -104,6 +230,24 @@ input {
 
 #go input:hover {
   opacity: 0.9;
+}
+
+#loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #077;
+  animation: loading 8s ease-out forwards;
+  z-index: 9999;
+}
+
+@keyframes loading {
+  0% { width: 0; }
+  20% { width: 40%; }
+  50% { width: 65%; }
+  80% { width: 85%; }
+  100% { width: 95%; }
 }
 
 select {
@@ -148,6 +292,11 @@ select::-ms-expand {
 #options select:hover,
 #options select:focus {
   border-bottom: 0.1em dashed #033;
+}
+
+#options #bc {
+  width: 12em;
+  border-bottom: 0.1em dashed #099;
 }
 
 @media (min-width: 550px) {

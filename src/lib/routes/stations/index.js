@@ -1,40 +1,31 @@
 import * as helpers from '../helpers.js';
 
-/**
- * get train stations from mav-stations API
- *
- * @param api mav-station API
- * @returns list of matching stations
- */
-const createStationsRoute = (api) => async (req, res, next) => {
-  const params = req.query;
-  // default result limit is 10
-  const limit = params.limit ? Number.parseInt(params.limit) : 10;
-  const searchterm = params.query ? helpers.cleanStr(params.query) : undefined;
-  const excludeCountryIso = params.excludeCountryIso
-    ? helpers.cleanStr(params.excludeCountryIso)
-    : undefined;
+const createStationsRoute = (api) => async (req, res) => {
+  const { query, limit: limitParam, excludeCountryIso: excludeParam } = req.query;
+  const limit = limitParam ? Number.parseInt(limitParam) : 10;
+  const searchterm = query ? helpers.cleanStr(query) : null;
+  const excludeCountryIso = excludeParam ? helpers.cleanStr(excludeParam) : null;
 
-  await api.stationList().then((result) => {
-    // filter search term
-    if (searchterm && searchterm.length) {
-      result = result.filter((station) =>
-        helpers.cleanStr(station.name).includes(searchterm)
-      );
-    }
+  let stations = await api.stationList();
 
-    // filter country
-    if (excludeCountryIso && excludeCountryIso.length) {
-      result = result.filter(
-        (station) => helpers.cleanStr(station.countryIso) !== excludeCountryIso
-      );
-    }
+  // Only show rail stations (exclude bus stops)
+  stations = stations.filter((station) => station.transportMode?.code !== 200);
 
-    // limit result
-    result = result.slice(0, limit);
+  if (searchterm) {
+    const words = searchterm.split(/\s+/);
+    stations = stations.filter((station) => {
+      const name = helpers.cleanStr(station.name);
+      return words.every((word) => name.includes(word));
+    });
+  }
 
-    res.send(result);
-  });
+  if (excludeCountryIso) {
+    stations = stations.filter(
+      (station) => helpers.cleanStr(station.countryIso) !== excludeCountryIso
+    );
+  }
+
+  res.send(stations.slice(0, limit));
 };
 
 export default createStationsRoute;

@@ -1,55 +1,59 @@
 import createExpress from 'express';
 import * as http from 'http';
 import compression from 'compression';
-import apiCache from 'apicache';
+import helmet from 'helmet';
 
 import createRoutes from './routes/index.js';
 import * as api from '../api/index.js';
-import helmet from 'helmet';
+
+// Simple in-memory response cache
+const cache = new Map();
+const CACHE_TTL = 15 * 60 * 1000; // 15 minutes
+
+const cacheMiddleware = (req, res, next) => {
+  const key = req.originalUrl;
+  const cached = cache.get(key);
+  if (cached && Date.now() - cached.time < CACHE_TTL) {
+    res.set('Content-Type', cached.contentType || 'text/html');
+    return res.send(cached.body);
+  }
+  const originalSend = res.send.bind(res);
+  res.send = (body) => {
+    cache.set(key, {
+      body,
+      time: Date.now(),
+      contentType: res.get('Content-Type'),
+    });
+    return originalSend(body);
+  };
+  next();
+};
 
 const createServer = () => {
-  // setup HTTP and HTTPS servers
   const express = createExpress();
   const server = http.createServer(express);
 
-  // enable security best-practices in production environments
   express.use(
     helmet({
       contentSecurityPolicy: false,
-      hsts:
-        process.env.NODE_ENV === 'production'
-          ? {
-              maxAge: 31536000, // 1 year
-              includeSubDomains: true,
-              preload: true,
-            }
-          : false,
-    })
+    }),
   );
 
-  // enable caching
-  express.use(apiCache.middleware('15 minutes'));
-
-  // enable gzip compression
+  express.use(cacheMiddleware);
   express.use(compression());
-
-  // enable static assets directory
   express.use('/assets', createExpress.static('assets'));
 
-  // setup and enable routes
   const {
     greetingRoute,
     startRoute,
-    dayRoute,
-    calendarRoute,
+    bestpreisRoute,
     imprintRoute,
     faqRoute,
     stationsRoute,
   } = createRoutes(api);
   express.get('/', greetingRoute, startRoute);
   express.get('/start', startRoute);
-  express.get('/day', dayRoute, startRoute);
-  express.get('/calendar', calendarRoute, startRoute);
+  express.get('/bestpreis', bestpreisRoute, startRoute);
   express.get('/imprint', imprintRoute);
   express.get('/faq', faqRoute);
   express.get('/stations', stationsRoute);

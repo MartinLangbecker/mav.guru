@@ -6,5 +6,5 @@ const server = createServer();
 // start HTTP server
 server.listen(port, (error) => {
   if (error) return console.error(error);
-  console.log(`HTTP: Listening on port ${port}.`);
+  console.log(`http://localhost:${port}`);
 });

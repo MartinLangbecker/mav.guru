@@ -43,7 +43,7 @@ const generate = (api) => {
   return document;
 };
 
-const createFaqRoute = (api) => (req, res, next) => {
+const createFaqRoute = (api) => (req, res) => {
   res.send(generate(api));
 };
 

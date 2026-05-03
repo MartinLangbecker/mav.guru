@@ -5,13 +5,13 @@ Thumbs.db
 
 # node-specific
 node_modules
-package-lock.json
 yarn.lock
 shrinkwrap.yaml
+pnpm-lock.yaml
 dist
-
-scripts/deploy
-assets/scripts/bundle
 
 # VS Code
 launch.json
+
+.idea
+.kiro

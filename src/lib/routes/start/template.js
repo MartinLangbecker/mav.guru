@@ -1,10 +1,8 @@
 import { h } from 'hastscript';
-// eslint-disable-next-line n/no-deprecated-api
-import { resolve } from 'url';
 import * as helpers from '../helpers.js';
 
-const head = (api) => {
-  const elements = [
+const head = (api) =>
+  h('head', [
     ...helpers.staticHeader(api),
     h('title', api.settings.title),
     ...helpers.opengraph({ api, extraTitle: null }),
@@ -18,9 +16,7 @@ const head = (api) => {
       type: 'text/css',
       href: '/assets/styles/autocomplete.css',
     }),
-  ];
-  return h('head', elements);
-};
+  ]);
 
 const errorBox = (error) => {
   if (error && error.message)
@@ -30,28 +26,21 @@ const errorBox = (error) => {
   return [];
 };
 
+const formatMinutes = (m) => {
+  const hh = String(Math.floor(m / 60)).padStart(2, '0');
+  const mm = String(m % 60).padStart(2, '0');
+  return `${hh}:${mm}`;
+};
+
 const createTemplate =
   (api) =>
   ({ params, error }) => {
     if (!params) params = {};
     const body = [
-      h('form', { id: 'page', action: './calendar', method: 'GET' }, [
-        h('div#header', [h('h1', 'Preiskalender')]),
+      h('form', { id: 'page', action: './bestpreis', method: 'GET' }, [
+        h('div#header', [h('h1', 'Bestpreissuche')]),
         h('div', { id: 'success', class: 'subtitle' }, [
-          h(
-            'div',
-            'Finde den günstigsten Preis innerhalb der nächsten Wochen.'
-          ),
-          h(
-            'div',
-            { class: 'note' },
-            "So funktioniert's: Die Tickets sind meist günstiger, weil Routen über Ungarn und die Ticketsuche der Ungarischen Staatsbahn MÁV genutzt werden. Damit kannst du wie üblich auch nur in Deutschland oder anderen Ländern reisen – auf dem Ticket steht lediglich, dass du über Ungarn fährst."
-          ),
-          h(
-            'div',
-            { class: 'note' },
-            'Die Suche ist aktuell noch recht langsam (30-60 Sekunden). Hab ein wenig Geduld, es lohnt sich.'
-          ),
+          h('div', 'Finde den günstigsten Preis für deine Verbindung.'),
         ]),
         errorBox(error),
         h('div#form', [
@@ -64,8 +53,19 @@ const createTemplate =
               value: params.origin ? params.origin.name : '',
               placeholder: api.settings.originPlaceholder,
               size: 1,
+              autocomplete: 'one-time-code',
             }),
           ]),
+          h(
+            'button',
+            {
+              type: 'button',
+              id: 'swap',
+              title: 'Stationen tauschen',
+              'aria-label': 'Start und Ziel tauschen',
+            },
+            '⇅',
+          ),
           h('div', { id: 'destination', class: 'station' }, [
             h('span', 'An'),
             h('input', {
@@ -75,18 +75,92 @@ const createTemplate =
               value: params.destination ? params.destination.name : '',
               placeholder: api.settings.destinationPlaceholder,
               size: 1,
+              autocomplete: 'one-time-code',
+            }),
+          ]),
+          h('div#date-row', [
+            h('label', { for: 'date' }, 'Datum: '),
+            h('input', {
+              id: 'date',
+              name: 'date',
+              type: 'date',
+              value: params.date || '',
             }),
           ]),
           h('div#go', [
-            h('input', {
-              id: 'submit',
-              name: 'submit',
-              type: 'submit',
-              value: 'Suchen',
-            }),
+            h('input', { id: 'submit', type: 'submit', value: 'Suchen' }),
           ]),
         ]),
-        h('div#options', api.options.input(params)),
+        h('details', { id: 'options-details' }, [
+          h('summary', 'Optionen & Filter'),
+          h('div#options', [
+            h('div.options-section', [
+              h('span.section-label', 'Reisende'),
+              ...api.options.input(params),
+            ]),
+            h('div.options-section', [
+              h('span.section-label', 'Filter'),
+              h('div.filter-grid', [
+                h('span.optRow', [
+                  h('label', [
+                    'Abfahrt ab: ',
+                    h('input', {
+                      type: 'text',
+                      placeholder: '--:--',
+                      value:
+                        params.departureAfter != null
+                          ? formatMinutes(params.departureAfter)
+                          : '',
+                      name: 'departureAfter',
+                    }),
+                  ]),
+                ]),
+                h('span.optRow', [
+                  'max. ',
+                  h('label', [
+                    h('input', {
+                      type: 'text',
+                      placeholder: '∞',
+                      value:
+                        Number.isInteger(params.maxChanges) &&
+                        params.maxChanges >= 0
+                          ? params.maxChanges
+                          : '',
+                      name: 'maxChanges',
+                    }),
+                    ' Umstiege',
+                  ]),
+                ]),
+                h('span.optRow', [
+                  h('label', [
+                    'Ankunft bis: ',
+                    h('input', {
+                      type: 'text',
+                      placeholder: '--:--',
+                      value:
+                        params.arrivalBefore != null
+                          ? formatMinutes(params.arrivalBefore)
+                          : '',
+                      name: 'arrivalBefore',
+                    }),
+                  ]),
+                ]),
+                h('span.optRow', [
+                  'max. ',
+                  h('label', [
+                    h('input', {
+                      type: 'text',
+                      placeholder: '24',
+                      value: params.duration || '',
+                      name: 'duration',
+                    }),
+                    ' h Fahrzeit',
+                  ]),
+                ]),
+              ]),
+            ]),
+          ]),
+        ]),
       ]),
       h('div#footer', [
         h('a', { id: 'faq', href: './faq' }, 'FAQ'),
@@ -96,11 +170,10 @@ const createTemplate =
     ];
 
     for (const script of api.settings.scripts) {
-      body.push(h('script', { src: resolve('/assets/scripts/', script) }));
+      body.push(h('script', { src: `/assets/scripts/${script}` }));
     }
 
-    const document = helpers.toHtmlString([head(api), h('body', body)]);
-    return document;
+    return helpers.toHtmlString([head(api), h('body', body)]);
   };
 
 export default createTemplate;

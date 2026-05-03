@@ -1,15 +1,10 @@
 import { h } from 'hastscript';
 import { u } from 'unist-builder';
 import { toHtml } from 'hast-util-to-html';
-import jsBeautify from 'js-beautify';
-// eslint-disable-next-line n/no-deprecated-api
-import { resolve } from 'url';
 
-// const useUmami = process.env.ANALYTICS === 'true';
-
-export const formatPrice = (price) => {
-  price = price.toFixed(2).toString().split('.');
-  return { euros: price[0], cents: price[1] };
+export const formatPrice = (amount) => {
+  const parts = amount.toFixed(2).toString().split('.');
+  return { euros: parts[0], cents: parts[1] };
 };
 
 export const opengraph = ({ api, extraTitle }) => {
@@ -44,24 +39,13 @@ export const staticHeader = (api) => {
       type: 'text/css',
       href: '/assets/styles/base.css',
     }),
-    // 		...(useUmami
-    // 			? [
-    // 				u('comment', `the following script is used for cookie-less, GDPR compliant analytics.
-    // you can disable it at any time, e.g. using the NoScript or PrivacyBadger browser extensions,
-    // and the website will still work 100% fine. as a privately maintained open-source project,
-    // gaining some insights in how (much) this service is used is really good to stay motivated.
-    // for more information on the analytics framework, which is completely open source, please
-    // check https://umami.is/docs/faq`),
-    // 				h('script', { async: true, defer: true, 'data-website-id': api.settings.analyticsId, src: 'https://developer.bahn.guru/umami.js' }),
-    // 			]
-    // 			: []),
   ];
   for (const style of api.settings.styles) {
     header.push(
       h('link', {
         rel: 'stylesheet',
         type: 'text/css',
-        href: resolve('/assets/styles/', style),
+        href: `/assets/styles/${style}`,
       })
     );
   }
@@ -71,7 +55,7 @@ export const staticHeader = (api) => {
       h('link', {
         rel: 'icon',
         type: 'image/png',
-        href: resolve('/assets/', api.settings.icon),
+        href: `/assets/${api.settings.icon}`,
       })
     );
   }
@@ -79,8 +63,8 @@ export const staticHeader = (api) => {
   return header;
 };
 
-export const toHtmlString = (e) =>
-  jsBeautify.html(toHtml(h(undefined, u('doctype'), h('html', e))));
+export const toHtmlString = (elements) =>
+  toHtml(h(undefined, u('doctype'), h('html', elements)));
 
 /**
  * clean string for easier comparison

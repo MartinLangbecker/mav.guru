@@ -1,5 +1,4 @@
 import { h } from 'hastscript';
-import moment from 'moment-timezone';
 import * as helpers from '../helpers.js';
 
 const head = (api) => {
@@ -49,7 +48,7 @@ const generate = (api) => {
 
 const createGreetingRoute = (api) => (req, res, next) => {
   if (!api.settings.greeting) return next();
-  const day = moment.tz('Europe/Berlin').format('YYYY-MM-DD');
+  const day = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Berlin' });
   if (api.settings.greeting.dates && !api.settings.greeting.dates.includes(day))
     return next();
   res.send(generate(api));

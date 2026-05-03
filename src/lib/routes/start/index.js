@@ -10,6 +10,11 @@ const errors = {
     code: 400,
     message: 'Bitte geben Sie einen gültigen Start- und Zielbahnhof an.',
   },
+  'missing-location': {
+    code: 400,
+    message:
+      'Für mindestens einen Bahnhof fehlen Koordinaten. Diese Verbindung wird derzeit nicht unterstützt.',
+  },
   unknown: {
     code: 500,
     message:
@@ -20,20 +25,19 @@ const errors = {
 const createStartRoute = (api) => {
   const parseParams = createParseParams(api);
   const template = createTemplate(api);
-  return async (req, res, _) => {
+  return async (req, res) => {
     try {
-      // general and api-specific params
       const { params, error: paramError } = await parseParams(req.query, {
         stationsOptional: true,
       });
-      // include errors forwarded from other routes
+      params.date = req.query.date || '';
       const errorId = req.query.error || paramError;
       if (errorId) {
         const error = errors[errorId] || errors.unknown;
         return res.status(error.code).send(template({ params, error }));
       }
       return res.send(template({ params }));
-    } catch (_) {
+    } catch {
       const error = errors.unknown;
       return res.status(error.code).send(template({ error }));
     }

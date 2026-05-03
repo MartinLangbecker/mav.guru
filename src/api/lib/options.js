@@ -1,10 +1,43 @@
 import { h } from 'hastscript';
-import isNull from 'lodash/isNull.js';
 
 const optionHTML = (value, text, checked) => {
   const opt = { value };
   if (checked) opt.selected = true;
   return h('option', opt, text);
+};
+
+// Discount cards with human-readable labels (ID → label)
+const discountCards = [
+  [0, '--'],
+  [1, 'BahnCard 25 (DE)'],
+  [3, 'BahnCard 50 (DE)'],
+  [5, 'BahnCard 100 (DE)'],
+  [8, 'Vorteilscard (AT)'],
+  [11, 'Klimaticket (AT)'],
+  [12, 'Österreichcard (AT)'],
+  [9, 'Generalabonnement (CH)'],
+  [10, 'Halbtaxabonnement (CH)'],
+  [13, 'SwissPass 50% (CH)'],
+  [14, 'SwissPass 100% (CH)'],
+  [15, 'MAXI KLASIK (CZ/SK)'],
+  [16, 'InKarta 25 (CZ/SK)'],
+  [17, 'InKarta 50 (CZ/SK)'],
+  [18, 'InKarta 100 (CZ/SK)'],
+  [19, 'START Klub (HU)'],
+  [22, 'Interrail/Eurail-Pass'],
+  [25, 'Eisenbahner-Ausweis (HU)'],
+  [26, 'FIP-Freifahrtschein'],
+  [27, 'FIP-Freifahrtschein (Einzelland)'],
+  [28, 'FIP-Ausweis'],
+  [31, 'FIP-Ausweis 1. Klasse (HU)'],
+  [32, 'Országbérlet (HU)'],
+  [33, 'MagyarOrszág24 (HU)'],
+];
+
+const formatMinutes = (m) => {
+  const hh = String(Math.floor(m / 60)).padStart(2, '0');
+  const mm = String(m % 60).padStart(2, '0');
+  return `${hh}:${mm}`;
 };
 
 export const input = (params) => [
@@ -16,92 +49,37 @@ export const input = (params) => [
     ' Klasse',
   ]),
   h('span.optRow', [
-    'BahnCard: ',
-    h('select', { name: 'bc', id: 'bc' }, [
-      optionHTML(0, '--', params.bc === 0),
-      optionHTML(1, '25', params.bc === 1),
-      optionHTML(3, '50', params.bc === 3),
-      optionHTML(5, '100', params.bc === 5),
-    ]),
+    'Ermäßigung: ',
+    h('input', {
+      type: 'text',
+      name: 'bc',
+      id: 'bc',
+      list: 'bc-list',
+      value: params.bc
+        ? discountCards.find(([id]) => id === params.bc)?.[1] || ''
+        : '',
+      placeholder: 'keine',
+      autocomplete: 'off',
+    }),
+    h(
+      'datalist',
+      { id: 'bc-list' },
+      discountCards
+        .filter(([id]) => id !== 0)
+        .map(([, label]) => h('option', { value: label })),
+    ),
   ]),
   h('span.optRow', [
     'Alter: ',
-    h('select', { name: 'age', id: 'age' }, [
-      optionHTML(0, '0-4', params.age === 0),
-      optionHTML(1, '4-6', params.age === 1),
-      optionHTML(2, '6-12', params.age === 2),
-      optionHTML(3, '12-14', params.age === 3),
-      optionHTML(4, '14-15', params.age === 4),
-      optionHTML(5, '15-16', params.age === 5),
-      optionHTML(6, '16-18', params.age === 6),
-      optionHTML(7, '18-26', params.age === 7),
-      optionHTML(8, '26+', params.age === 8),
-    ]),
-  ]),
-  h('span.optRow', [
-    h('label#departureAfter', [
-      'ab: ',
-      h('input', {
-        type: 'text',
-        placeholder: '--:--',
-        value: params.departureAfter
-          ? params.departureAfter.format('hh:mm')
-          : '',
-        name: 'departureAfter',
-      }),
-      ' Uhr',
-    ]),
-  ]),
-  h('span.optRow', [
-    h('label#arrivalBefore', [
-      'bis: ',
-      h('input', {
-        type: 'text',
-        placeholder: '--:--',
-        value: params.arrivalBefore ? params.arrivalBefore.format('hh:mm') : '',
-        name: 'arrivalBefore',
-      }),
-      ' Uhr',
-    ]),
-  ]),
-  h('span.optRow', [
-    'max. ',
-    h('label#duration', [
-      h('input', {
-        type: 'text',
-        placeholder: 24,
-        value: params.duration || '',
-        name: 'duration',
-      }),
-      ' h Fahrzeit',
-    ]),
-  ]),
-  h('span.optRow', [
-    'max. ',
-    h('label#maxChanges', [
-      h('input', {
-        type: 'text',
-        placeholder: '∞',
-        value:
-          Number.isInteger(params.maxChanges) && params.maxChanges >= 0
-            ? params.maxChanges
-            : '',
-        name: 'maxChanges',
-      }),
-      ' Umstiege',
-    ]),
-  ]),
-  h('span.optRow', [
-    'Ungarn-Trick: ',
-    h('select', { name: 'trick', id: 'trick' }, [
-      optionHTML(0, '--', params.trick === 0),
-      optionHTML(
-        1,
-        'Ungarn als Start',
-        params.trick === undefined || params.trick === 1
-      ),
-      optionHTML(2, 'Ungarn als Ziel', params.trick === 2),
-    ]),
+    h('input', {
+      type: 'number',
+      name: 'age',
+      id: 'age',
+      min: 0,
+      max: 99,
+      value: params.age,
+      size: 3,
+    }),
   ]),
 ];
 
@@ -109,24 +87,16 @@ export const text = (params) => {
   const result = [];
   if (params.class === 1) result.push(params.class + '. Klasse', ', ');
   if (params.bc) {
-    if (params.bc === 1) result.push('mit BahnCard 25', ', ');
-    if (params.bc === 3) result.push('mit BahnCard 50', ', ');
-    if (params.bc === 5) result.push('mit BahnCard 100', ', ');
+    const card = discountCards.find(([id]) => id === params.bc);
+    if (card) result.push('mit ' + card[1], ', ');
   }
-  if (params.age) {
-    if (params.age === 0) result.push('0-4 Jahre', ', ');
-    if (params.age === 1) result.push('4-6 Jahre', ', ');
-    if (params.age === 2) result.push('6-12 Jahre', ', ');
-    if (params.age === 3) result.push('12-14 Jahre', ', ');
-    if (params.age === 4) result.push('14-15 Jahre', ', ');
-    if (params.age === 5) result.push('15-16 Jahre', ', ');
-    if (params.age === 6) result.push('16-18 Jahre', ', ');
-    if (params.age === 7) result.push('18-26 Jahre', ', ');
+  if (params.age !== 30) {
+    result.push(params.age + ' Jahre', ', ');
   }
-  if (params.departureAfter && +params.departureAfter > 0)
-    result.push('ab ' + params.departureAfter.format('HH:mm') + ' Uhr', ', ');
-  if (params.arrivalBefore && +params.arrivalBefore > 0)
-    result.push('bis ' + params.arrivalBefore.format('HH:mm') + ' Uhr', ', ');
+  if (params.departureAfter !== null && params.departureAfter > 0)
+    result.push('ab ' + formatMinutes(params.departureAfter) + ' Uhr', ', ');
+  if (params.arrivalBefore !== null && params.arrivalBefore > 0)
+    result.push('bis ' + formatMinutes(params.arrivalBefore) + ' Uhr', ', ');
   if (params.duration && params.duration > 0)
     result.push('Fahrzeit bis ' + params.duration + ' Stunden', ', ');
   if (params.maxChanges) {
@@ -134,10 +104,6 @@ export const text = (params) => {
     else if (params.maxChanges === 1)
       result.push('max. ' + params.maxChanges + ' Umstieg', ', ');
     else result.push('max. ' + params.maxChanges + ' Umstiege', ', ');
-  }
-  if (params.trick) {
-    if (params.trick === 1) result.push('Ungarn als Start', ', ');
-    if (params.trick === 2) result.push('Ungarn als Ziel', ', ');
   }
   if (result.length) result.pop();
   return result;
@@ -147,14 +113,13 @@ export const url = (params) => {
   const result = [];
   if (params.class) result.push('class=' + params.class);
   if (params.bc) result.push('bc=' + params.bc);
-  if (params.age) result.push('age=' + params.age);
-  if (params.departureAfter)
-    result.push('departureAfter=' + params.departureAfter.format('HH:mm'));
-  if (params.arrivalBefore)
-    result.push('arrivalBefore=' + params.arrivalBefore.format('HH:mm'));
+  if (params.age !== 30) result.push('age=' + params.age);
+  if (params.departureAfter !== null)
+    result.push('departureAfter=' + formatMinutes(params.departureAfter));
+  if (params.arrivalBefore !== null)
+    result.push('arrivalBefore=' + formatMinutes(params.arrivalBefore));
   if (params.duration) result.push('duration=' + params.duration);
-  if (!isNull(params.maxChanges))
+  if (params.maxChanges !== null)
     result.push('maxChanges=' + params.maxChanges);
-  if (params.trick) result.push('trick=' + params.trick);
   return result;
 };

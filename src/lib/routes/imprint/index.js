@@ -76,7 +76,7 @@ const generate = (api) => {
   return document;
 };
 
-const createImprintRoute = (api) => (req, res, next) => {
+const createImprintRoute = (api) => (req, res) => {
   res.send(generate(api));
 };
 

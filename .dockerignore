@@ -1,1 +1,5 @@
-assets/scripts/bundle
+node_modules
+.git
+.idea
+.kiro
+.github

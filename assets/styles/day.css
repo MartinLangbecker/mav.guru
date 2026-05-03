@@ -3,6 +3,21 @@
     max-width: 95%;
 }
 
+.back-btn{
+    font-size: 0.9rem;
+    color: #077;
+    text-decoration: none;
+}
+
+.back-btn:hover{
+    opacity: 0.7;
+}
+
+#nav{
+    text-align: left;
+    margin-top: 0.5rem;
+}
+
 #header{
     margin-top: 1rem;
     margin-bottom: .5rem;
@@ -14,6 +29,17 @@
 
 #date{
     font-weight: bold;
+}
+
+.date-nav{
+    color: #077;
+    text-decoration: none;
+    padding: 0 0.4em;
+    font-size: 90%;
+}
+
+.date-nav:hover{
+    opacity: 0.7;
 }
 
 #journeys{
